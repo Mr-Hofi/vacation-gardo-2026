@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grado 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    color-scheme:light;
+    --paper:#fafbf9;
+    --surface:#f1f4f1;
+    --ink:#17302e;
+    --muted:#546864;
+    --faint:#6d8380;
+    --rule:#d4dcd8;
+    --rule-strong:#b6c4bf;
+    --accent:#0e6f62;
+    --accent-soft:#e2efeb;
+    --accent-mid:#cfe4de;
+    --ochre:#8d6212;
+    --ochre-soft:#f4ecda;
+  }
+
+  *{box-sizing:border-box}
+  html{color-scheme:light}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Karla","Helvetica Neue",Arial,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  .sheet{
+    max-width:52rem;
+    margin:0 auto;
+    padding:clamp(1.75rem,4vw,4rem) clamp(1.1rem,4vw,3rem) 5rem;
+    display:flex;
+    flex-direction:column;
+    gap:2.5rem;
+  }
+
+  /* ---- document header ---- */
+  .doc-head{display:flex;flex-direction:column;gap:1.1rem}
+  /* ---- table of contents ---- */
+  .toc{display:flex;flex-direction:column;gap:.6rem}
+  .toc .label{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.68rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+  .toc ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+  }
+  .toc li{border-bottom:1px solid var(--rule)}
+  .toc li:first-child{border-top:1px solid var(--rule)}
+  .toc a{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    padding:.6rem 0;
+    text-decoration:none;
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:1.2rem;
+  }
+  .toc a:hover{color:var(--accent)}
+  .toc .hint{
+    font-family:"Karla","Helvetica Neue",Arial,sans-serif;
+    font-size:.85rem;
+    color:var(--muted);
+    text-align:right;
+  }
+
+  /* ---- chapters ---- */
+  .chapter{
+    display:flex;
+    flex-direction:column;
+    gap:1.6rem;
+    border-top:2px solid var(--ink);
+    padding-top:1.4rem;
+    scroll-margin-top:1rem;
+  }
+  .chapter-head{display:flex;flex-direction:column;gap:.45rem}
+  .chapter-head .kicker{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.68rem;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin:0;
+  }
+  h2{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:600;
+    font-size:clamp(1.75rem,5vw,2.4rem);
+    line-height:1.1;
+    letter-spacing:-.015em;
+    margin:0;
+    text-wrap:balance;
+  }
+  .chapter-head .intro{
+    font-family:"Newsreader",Georgia,serif;
+    font-size:1.1rem;
+    line-height:1.55;
+    color:var(--muted);
+    margin:0;
+    max-width:40em;
+  }
+
+  section{display:flex;flex-direction:column;gap:.95rem}
+  h3{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:600;
+    font-size:1.4rem;
+    line-height:1.2;
+    letter-spacing:-.01em;
+    margin:0;
+    padding-bottom:.4rem;
+    border-bottom:1px solid var(--rule);
+    text-wrap:balance;
+  }
+  h4{
+    font-family:"Karla","Helvetica Neue",Arial,sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    margin:.4rem 0 -.35rem;
+  }
+  p{margin:0;max-width:40em}
+  ul{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.4rem}
+  li{max-width:39em}
+  li::marker{color:var(--faint)}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  em{font-family:"Newsreader",Georgia,serif;font-size:1.05em}
+  .legend{font-size:.85rem;color:var(--muted);max-width:40em}
+
+  /* ---- callouts ---- */
+  .key,.note{
+    padding:1.1rem 1.3rem;
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+  }
+  .key{background:var(--accent-soft);border-left:3px solid var(--accent)}
+  .note{background:var(--ochre-soft);border-left:3px solid var(--ochre)}
+  .key .label,.note .label{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.68rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .key .label{color:var(--accent)}
+  .note .label{color:var(--ochre)}
+
+  /* ---- reliability tags ---- */
+  .tag{
+    display:inline-block;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.62rem;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    padding:.18rem .5rem;
+    border:1px solid currentColor;
+    vertical-align:.2em;
+    margin-left:.5rem;
+    font-weight:500;
+    white-space:nowrap;
+  }
+  .tag.ok{color:var(--accent)}
+  .tag.open{color:var(--ochre)}
+
+  /* ---- tables ---- */
+  .scroll{overflow-x:auto}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:26rem;
+    font-size:.95rem;
+  }
+  caption{
+    text-align:left;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.68rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--faint);
+    padding-bottom:.5rem;
+  }
+  th,td{
+    border:1px solid var(--rule);
+    padding:.5rem .7rem;
+    text-align:left;
+    vertical-align:top;
+  }
+  thead th{
+    background:var(--surface);
+    border-color:var(--rule-strong);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.66rem;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:500;
+    line-height:1.35;
+  }
+  tbody th{font-weight:500}
+  .num{
+    text-align:right;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .mid{
+    text-align:center;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  thead .mid{text-align:center}
+  .swim{background:var(--accent-soft);color:var(--accent);font-weight:700}
+  tbody tr:hover td:not(.swim),tbody tr:hover th{background:#f5f7f5}
+
+  /* ---- checklist ---- */
+  .todo{list-style:none;padding-left:0;gap:.5rem}
+  .todo li{position:relative;padding-left:1.7rem}
+  .todo li::before{content:"\2610";position:absolute;left:0;top:-.05em;color:var(--accent);font-size:1.15em}
+
+  /* ---- free beaches list ---- */
+  .beaches{display:flex;flex-direction:column;gap:0}
+  .beach{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:.35rem 1.5rem;
+    padding:1rem 0;
+    border-bottom:1px solid var(--rule);
+    align-items:baseline;
+  }
+  .beach:first-child{border-top:1px solid var(--rule)}
+  .beach h4{margin:0;font-size:1.05rem}
+  .beach .dist{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.8rem;
+    color:var(--accent);
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .beach p{grid-column:1/-1;font-size:.95rem;color:var(--muted);max-width:44em}
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding-top:1rem;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.7rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+
+  @media (max-width:600px){
+    body{font-size:16px}
+    .beach{grid-template-columns:1fr}
+  }
+
+  @media print{
+    body{background:#fff;color:#000;font-size:10.5pt}
+    .sheet{padding:0;gap:1.4rem;max-width:none}
+    .key,.note{background:none;border-left:2px solid #000}
+    .key .label,.note .label,.chapter-head .kicker{color:#000}
+    .swim{background:none;color:#000;text-decoration:underline}
+    thead th{background:#eee}
+    a{color:#000;text-decoration:none}
+    .toc{display:none}
+    .chapter{break-before:page;border-top:none}
+    .chapter:first-of-type{break-before:auto}
+    h2,h3,h4{break-after:avoid}
+    table,.beach,.key,.note{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="doc-head">
+    <h1>Grado 2026</h1>
+  </header>
+
+  <nav class="toc" aria-label="Obsah">
+    <span class="label">Obsah</span>
+    <ol>
+      <li><a href="#vyresit">Vyřešit<span class="hint">otevřené otázky</span></a></li>
+      <li><a href="#parkovani">Parkování<span class="hint">pěší zóna, ZTL, parkoviště, tarify</span></a></li>
+      <li><a href="#plaze">Pláže<span class="hint">vstupy, ceny, volné pláže</span></a></li>
+      <li><a href="#vodni-park">Vodní park<span class="hint">ceny, co obsahuje</span></a></li>
+      <li><a href="#prilivy">Příliv a odliv<span class="hint">časy na celý pobyt</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ================= KAPITOLA: VYŘEŠIT ================= -->
+  <article class="chapter" id="vyresit">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Vyřešit</h2>
+      <p class="intro">Otevřené otázky, na které dokument nezná odpověď. Postupně odbavovat.</p>
+    </div>
+
+    <section>
+      <ul class="todo">
+        <li><strong>Ubytovatel &ndash; ZTL.</strong> Zaregistrujete nám SPZ na <a href="http://ztl.comunegrado.it/">ztl.comunegrado.it</a>? Bez registrace přijde automatická pokuta z&nbsp;kamery.</li>
+        <li><strong>Ubytovatel &ndash; parkování.</strong> Počítáme s&nbsp;bezplatným parkovištěm na Piazzale Giusti. Dá se na něj spolehnout, nebo doporučujete Isolu della Schiusa či něco jiného?</li>
+        <li><strong>Před odjezdem &ndash; volný vstup na pláž.</strong> Ověřit v&nbsp;<a href="https://www.gradoit.it/_it/news_cerca">novinkách GIT</a>, jestli od 14.&nbsp;9. platí volný vstup jako v&nbsp;roce 2024. Oznámení chodí v&nbsp;prvních dnech září.</li>
+        <li><strong>Před odjezdem &ndash; vodní park.</strong> Ověřit v&nbsp;<a href="https://www.gradoit.it/_it/news_cerca">novinkách GIT</a>, jestli je <em>Parco Acquatico</em> ještě v&nbsp;provozu. V&nbsp;roce 2025 zavřel 8.&nbsp;9.</li>
+      </ul>
+    </section>
+
+  </article>
+
+  <!-- ================= KAPITOLA: PARKOVÁNÍ ================= -->
+  <article class="chapter" id="parkovani">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Parkování</h2>
+      <p class="intro">Ubytování stojí v&nbsp;pěší zóně. Vjezd hlídají kamery, takže SPZ musí být předem nahlášená v&nbsp;systému ZTL. Na vyložení zavazadel má dům vyhrazené stání za budovou.</p>
+    </div>
+
+    <section>
+      <h3>Pěší zóna a&nbsp;příjezd</h3>
+      <ul>
+        <li>Viale Dante Alighieri patří do zóny <strong>APU2</strong> (<em>area pedonale urbana dei viali</em>), spolu s&nbsp;Viale Europa a&nbsp;Via Verdi. Platí nepřetržitě, celý rok, hlídáno kamerami.</li>
+        <li><strong>Na vyložení zavazadel je vyhrazené stání za budovou</strong> &ndash; není potřeba stát na Viale Dante. Pro vjezd hostů platí limit 30 minut, pokud objekt nemá soukromé parkovací místo; ubytovatel má vydat kartičku s&nbsp;časem příjezdu.</li>
+        <li><strong>SPZ registruje ubytovatel na <a href="http://ztl.comunegrado.it/">ztl.comunegrado.it</a></strong> (přesměruje na <em>ztl-grado.sismic.it</em>). Bez registrace přijde automatická pokuta, a&nbsp;to bez ohledu na to, kde auto nakonec zaparkuje. Nahlásit jde i&nbsp;zpětně &ndash; <em>accesso occasionale</em> do 48 hodin po vjezdu.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Kde zaparkovat</h3>
+
+      <div class="key">
+        <span class="label">Nejbližší parkoviště zdarma</span>
+        <p><strong>Piazzale Giusti</strong> &ndash; vjezd z&nbsp;Via Giuseppe Giusti (<a href="https://www.google.com/maps/search/?api=1&amp;query=45.68045,13.40198">mapa</a>). Asi <strong>750 m, 10 minut pěšky.</strong> 90 míst, 2 pro invalidy, nehlídané, 24/7, bez omezení výšky. V&nbsp;<a href="https://comune.grado.go.it/media/files/md/031009/Regolamento_aree_di_sosta_anno_2024.pdf">nařízení obce</a> se mezi placenými plochami neobjevuje. Vlastní jméno na mapách nemá &ndash; pin je označený jen obecným <em>Parcheggio</em>, tedy italsky &bdquo;parkoviště&ldquo;. Název <em>Piazzale Giusti</em> pochází ze soupisu gradských parkovišť.</p>
+      </div>
+
+      <div class="scroll">
+        <table>
+          <caption>Větší parkoviště v&nbsp;okolí</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parkoviště</th>
+              <th scope="col" class="num">Míst</th>
+              <th scope="col" class="num">Vzdálenost</th>
+              <th scope="col">Cena</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.68045,13.40198">Piazzale Giusti</a></th><td class="num">90</td><td class="num">~750 m</td><td><strong>zdarma</strong></td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67827,13.39240">Riva Slataper</a></th><td class="num">250</td><td class="num">~150 m</td><td>€7.00 / den, jen 15.&nbsp;4.&nbsp;&ndash;&nbsp;15.&nbsp;10.</td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67985,13.39104">Piazza del Lavoro</a></th><td class="num">140</td><td class="num">~370 m</td><td>€7.00 / den</td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67837,13.39876">Palacongressi &ndash; Viale Italia</a></th><td class="num">&ndash;</td><td class="num">~430 m</td><td>€7.00 / den, jen 15.&nbsp;4.&nbsp;&ndash;&nbsp;15.&nbsp;10.</td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67951,13.40001">Via Vespucci</a></th><td class="num">100</td><td class="num">~570 m</td><td>€7.00 / den, jen 15.&nbsp;4.&nbsp;&ndash;&nbsp;15.&nbsp;10.</td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.68045,13.38785">Riva Gregori &ndash; &bdquo;Squero&ldquo;</a></th><td class="num">75</td><td class="num">~580 m</td><td>€7.00 / den</td></tr>
+            <tr><th scope="row"><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67940,13.38657">Piazza Carpaccio</a></th><td class="num">160</td><td class="num">~600 m</td><td>€7.00 / den</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="legend">Kapacity podle veřejného soupisu gradských parkovišť, vzdálenosti vzdušnou čarou od ubytování. <strong>Isola della Schiusa</strong> (Viale dello Sport, Riva Bixio, Riva Garibaldi a&nbsp;okolí) má v&nbsp;sezóně stejné podmínky jako okolí ubytování, takže cesta přes lávku nic neušetří.</p>
+    </section>
+
+    <section>
+      <h3>Tarifní pásma a&nbsp;ceny<span class="tag open">Tarify 2025</span></h3>
+
+      <div class="note">
+        <span class="label">Pozor na názvy pásem</span>
+        <p><strong>Červená, zelená a&nbsp;hnědá jsou jen interní názvy cenových pásem obce &ndash; na silnici žádnou takovou barvu neuvidíte.</strong> Placená stání jsou vždy namalovaná <strong>modře</strong>, bez ohledu na pásmo. Kolik se platí, se pozná až z&nbsp;parkomatu.</p>
+      </div>
+
+      <p>13.&ndash;18.&nbsp;9. spadá do placené sezóny <strong>15.&nbsp;4.&nbsp;&ndash;&nbsp;15.&nbsp;10.</strong>, kdy jsou aktivní i&nbsp;sezónní plochy. Mimo tohle období je jich část zdarma.</p>
+
+      <div class="scroll">
+        <table>
+          <caption>Modrá stání, placeno 8:00&ndash;22:00 každý den včetně svátků</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tarifní pásmo</th>
+              <th scope="col" class="num">30 min</th>
+              <th scope="col" class="num">1 hodina</th>
+              <th scope="col" class="num">Celý den</th>
+              <th scope="col">Kde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Zelená</th><td class="num">€0.90</td><td class="num">€1.80</td><td class="num">€7.00</td><td>vše mimo historické centrum, tedy i&nbsp;všechna parkoviště v&nbsp;tabulce výše</td></tr>
+            <tr><th scope="row">Červená</th><td class="num">€1.50</td><td class="num">€2.50</td><td class="num">&ndash;</td><td>historické centrum &ndash; Piazza XXVI Maggio, Piazza Marinai d&rsquo;Italia. Od 2. do 3. hodiny €3.00, dál €3.50.</td></tr>
+            <tr><th scope="row">Via Milano, Riva G. da Verrazzano</th><td class="num">&ndash;</td><td class="num">&ndash;</td><td class="num">€15.00</td><td>u pláže <em>Costa Azzurra</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Modré zóny v&nbsp;okolí ubytování</h4>
+      <ul>
+        <li><strong>Celoročně placené:</strong> Piazza Carpaccio, Via Carducci, Via Rizzo, Via Grego, Via Beato Angelico, Riva Brioni, parkoviště &bdquo;Squero&ldquo; u&nbsp;Riva Gregori a&nbsp;úseky Via Donizetti, Via Marconi, Via Bellini a&nbsp;Via Galvani mezi Via Carducci a&nbsp;Via Verdi.</li>
+        <li><strong>Placené jen 15.&nbsp;4.&nbsp;&ndash;&nbsp;15.&nbsp;10.:</strong> Riva Slataper (úsek Via Barbana &ndash; Via Galilei), Viale Italia u&nbsp;Palacongressi, Via Vespucci, Viale del Sole, Viale Argine dei Moreri, Via E. Fermi, Via M. Polo.</li>
+      </ul>
+
+      <h4>Značení na místě</h4>
+      <p><strong>Na silnici existují jen tři barvy čar:</strong> bílá = parkování zdarma, <strong>modrá = placeno</strong>, žlutá = vyhrazeno (rezidenti, invalidé, zásobování). Nic zeleného ani červeného na vozovce není &ndash; to jsou jen názvy cenových pásem v&nbsp;nařízení obce.</p>
+      <p>Značka zákazu stání s&nbsp;dodatkem <em>&bdquo;fuori dagli stalli&ldquo;</em> zakazuje jen stání mimo vyznačené boxy. Parkování uvnitř boxu je v&nbsp;pořádku.</p>
+
+      <h4>Jak se platí</h4>
+      <p>Parkomatem u&nbsp;parkoviště (ticket za sklo, mince jsou jistota) nebo aplikací <a href="https://www.easypark.com/it-it">EasyPark</a>, kde se platí jen odstátá doba. <strong>Denní tarif €7.00 platí na jeden den, ne na pobyt</strong> &ndash; za 13.&ndash;18.&nbsp;9. tedy 5&times; €7.00. Vícedenní turistická permanentka neexistuje, abonentky obec vydává jen rezidentům a&nbsp;majitelům druhých domů.</p>
+
+      <p class="legend">Tarify platí od 7.&nbsp;1.&nbsp;2025, kdy obec zrušila hnědé pásmo (levnější, patřila do něj Isola della Schiusa) a&nbsp;posunula konec placené doby z&nbsp;20:00 na 22:00. Novější nařízení obec na webu nezveřejnila.</p>
+    </section>
+
+  </article>
+
+  <!-- ================= KAPITOLA: PLÁŽE ================= -->
+  <article class="chapter" id="plaze">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Pláže</h2>
+      <p class="intro">Jak funguje placený vstup na hlavní pláž, co je v&nbsp;ceně, a&nbsp;kde jsou v&nbsp;Gradu pláže úplně zdarma.</p>
+    </div>
+
+    <div class="key">
+      <span class="label">Ve zkratce</span>
+      <p>Ubytování stojí naproti hlavnímu vstupu na hlavní gradskou pláž (kancelář <strong>GIT</strong>, <a href="https://www.google.com/maps/search/?api=1&amp;query=45.67699,13.39487">Viale Dante Alighieri 72</a>, je ~100 m odsud). Pláž je <strong>oplocený, placený areál</strong>, vstupenka ale stojí <strong>€3.00 za dospělého, €1.50 za dítě 6&ndash;12 let, do 6 let zdarma</strong>. Slunečník ani lehátko povinné nejsou, to je samostatný pronájem.</p>
+    </div>
+
+    <section>
+      <h3>Jak to funguje</h3>
+      <ul>
+        <li>Hlavní pláž (~1,6&ndash;2 km, <em>Spiaggia Principale GIT</em>) spravuje <em>Grado Impianti Turistici SpA</em>. Placený vstup je tradice z&nbsp;habsburských časů.</li>
+        <li>Osm číslovaných vstupů, každý vede do jiného sektoru &ndash; <a href="https://www.gradoit.it/_it/mappa_spiaggia">mapa pláže se sektory</a>.</li>
+        <li>Otevřeno <strong>09:00&ndash;19:00</strong>, plavčíci po celou dobu. Kancelář rezervací a&nbsp;kasa na vybavení jen 09:00&ndash;16:30.</li>
+        <li>Obecní plavecká sezóna: 1.&nbsp;5.&nbsp;&ndash;&nbsp;30.&nbsp;9. Vysoká sezóna GIT: 15.&nbsp;5.&nbsp;&ndash;&nbsp;13.&nbsp;9.</li>
+        <li>Vstupenka (<em>ticket servizi</em>) pokrývá přístup na písek, plavčíky, teplé sprchy, WC, převlékárny, hřiště, Wi-Fi a&nbsp;animace. Vybavení nepokrývá.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Ceník 2026<span class="tag ok">Oficiální</span></h3>
+
+      <div class="scroll">
+        <table>
+          <caption>Vstupenka</caption>
+          <thead>
+            <tr><th scope="col">Kategorie</th><th scope="col" class="num">Cena</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Dospělý</th><td class="num">€3.00</td></tr>
+            <tr><th scope="row">Dítě 6&ndash;12 let</th><td class="num">€1.50</td></tr>
+            <tr><th scope="row">Do 6 let, v&nbsp;doprovodu dospělého</th><td class="num">zdarma</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Vybavení (nepovinné)</h4>
+      <p class="legend">13.&nbsp;9. je poslední den vysoké sezóny, od 14.&nbsp;9. platí nízká sezóna s&nbsp;těmito cenami.</p>
+
+      <div class="scroll">
+        <table>
+          <caption>Nízká sezóna od 14. 9.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Položka</th>
+              <th scope="col" class="num">A &middot; po&ndash;čt</th>
+              <th scope="col" class="num">B &middot; pá&ndash;ne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Slunečník + až 2 lehátka</th><td class="num">€18.00</td><td class="num">€21.00</td></tr>
+            <tr><th scope="row">Lehátko nebo křeslo navíc</th><td class="num">€4.00</td><td class="num">€5.00</td></tr>
+            <tr><th scope="row">Lehátko v&nbsp;první řadě u&nbsp;vody</th><td class="num">€5.00</td><td class="num">€7.00</td></tr>
+            <tr><th scope="row">Kabina</th><td class="num">€6.50</td><td class="num">€8.00</td></tr>
+            <tr><th scope="row"><em>Smart Beach</em> &ndash; slunečník + 2 lehátka</th><td class="num">€13.50</td><td class="num">€15.50</td></tr>
+            <tr><th scope="row">Parkoviště GIT za pláží</th><td class="num">€7.00</td><td class="num">€9.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="legend"><strong>A</strong> = pondělí až čtvrtek. <strong>B</strong> = pátek až neděle a&nbsp;svátky. Odpolední tarify na vybavení platí od 15:00. <a href="https://www.gradoit.it/download/documenti/342634247_0136_git_catalogo_servizi_2026_web.pdf">Celý ceník GIT 2026 (PDF)</a>.</p>
+    </section>
+
+    <section>
+      <h3>Vlastní ručník místo lehátka<span class="tag ok">Podle zákona</span></h3>
+      <p><strong>Ručník stačí.</strong> Po zaplacení vstupu se lze rozložit na vlastní ručník na písku, pronájem slunečníku ani lehátka povinný není. Koncesionář smí zpoplatnit služby &ndash; sprchy, WC, plavčíky, úklid &ndash; ne samotné položení ručníku na písek. GIT to nikde výslovně nepíše, u italských <em>stabilimenti</em> to ale platí obecně.</p>
+      <h4>Omezení z&nbsp;obecní vyhlášky</h4>
+      <ul>
+        <li><strong>Pás 5 m od vody musí zůstat volný.</strong> Je vyhrazený pro průchod a&nbsp;nesmí se v&nbsp;něm nic rozkládat &ndash; slunečníky, křesla, lehátka, stoličky ani ručníky. Projít nebo si na chvíli sednout jde, usadit se tam ne.</li>
+        <li><strong>V&nbsp;zónách obsazených slunečníky a&nbsp;lehátky se nesmí hrát hry</strong> &ndash; fotbal, volejbal, tenis, pétanque. Na to má GIT vyhrazená hřiště.</li>
+      </ul>
+      <h4>Kde je na ručník místo</h4>
+      <p>Pláž je hustě zastavěná řadami slunečníků (GIT spravuje kolem 3 100 slunečníků a&nbsp;7 500 lehátek). Volný písek je hlavně mezi řadami, za posledními řadami a&nbsp;na zelených plochách v&nbsp;zadní části pláže. Od 14.&nbsp;9. je nízká sezóna a&nbsp;pláž výrazně prázdnější.</p>
+    </section>
+
+    <section>
+      <h3>Jak se platí vstup</h3>
+      <ul>
+        <li><strong>Na místě u&nbsp;vstupu.</strong> Všech osm vstupů je obsluhovaných personálem, turnikety tam nejsou. Žádná rezervace ani registrace není potřeba.</li>
+        <li>Vstupy fungují <strong>09:00&ndash;19:00</strong>, kasa na vybavení ale jen do <strong>16:30</strong>. Samotnou vstupenku lze koupit až do zavírací hodiny.</li>
+        <li><strong>Online nebo v&nbsp;aplikaci:</strong> přes <a href="https://www.gradoit.it/_it/prenota"><em>Prenota</em></a> na gradoit.it nebo appku <em>GIT Grado</em>. Slouží primárně na slunečníky a&nbsp;abonentky, ne na jednotlivé vstupenky.</li>
+        <li><strong>Platba:</strong> v&nbsp;kanceláři rezervací hotovost i&nbsp;karta, online přes Stripe. Co bere pokladna přímo na vstupu, GIT neuvádí &ndash; <strong>mít pro jistotu drobné v&nbsp;hotovosti.</strong></li>
+      </ul>
+      <div class="key">
+        <span class="label">Postup</span>
+        <p>Dojít k&nbsp;nejbližšímu vstupu, zaplatit €3 na dospělého, projít. Ručníky s&nbsp;sebou, nic dalšího řešit netřeba.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Opakovaný vstup na jednu vstupenku<span class="tag open">Nezjištěno</span></h3>
+      <ul>
+        <li>Pravidlo <strong>není nikde zveřejněno</strong> &ndash; ani v&nbsp;ceníku, ani v&nbsp;provozních řádech GIT.</li>
+        <li>Vstupy se skenují a&nbsp;GIT používá magnetickou kartu s&nbsp;nahranými zakoupenými službami. Celodenní platnost to nevylučuje, ale ani nepotvrzuje.</li>
+        <li>Při €3 na dospělého jde o&nbsp;drobnost &ndash; dvě samostatné návštěvy denně vyjdou na €6.</li>
+      </ul>
+      <p>Bez vstupenky se dá projít po <em>battigii</em>, pásu u&nbsp;vody: <em>Capitaneria di porto</em> vymohla na GIT dva trvale otevřené průchody na obou koncích areálu. Volný průchod, ale bez služeb a&nbsp;bez možnosti se usadit.</p>
+    </section>
+
+    <section>
+      <h3>Možný volný vstup od poloviny září<span class="tag open">Nepotvrzeno</span></h3>
+      <div class="note">
+        <span class="label">Hlídat před odjezdem</span>
+        <p>V&nbsp;roce <strong>2024</strong> GIT zrušil vstupenku úplně <strong>od 16.&nbsp;9. do 5.&nbsp;10.</strong> a&nbsp;dal 40&ndash;50&nbsp;% slevu na vybavení. Stejná akce běžela v&nbsp;roce 2023. V&nbsp;roce 2026 začíná nízká sezóna 14.&nbsp;9.</p>
+      </div>
+      <p>Pro rok 2026 nebylo k&nbsp;31.&nbsp;8.&nbsp;2026 nic oznámeno. V&nbsp;roce 2024 přišlo oznámení v&nbsp;prvních dnech září &ndash; sledovat <a href="https://www.gradoit.it/_it/news_cerca">novinky na gradoit.it</a>.</p>
+    </section>
+
+    <section>
+      <h3>Volné pláže</h3>
+      <p class="legend">Bez vstupenky. Vzdálenosti od ubytování.</p>
+      <div class="beaches">
+        <article class="beach">
+          <h4>Costa Azzurra</h4>
+          <span class="dist">~1,2 km &middot; Z</span>
+          <p>&bdquo;Stará pláž&ldquo;, nejzápadnější na ostrově, <a href="https://www.google.com/maps/search/?api=1&amp;query=45.68021,13.38215">via Milano / via Zara</a>. Volný vstup, jednotlivé koncese půjčují vybavení. Prudší sklon dna, takže se dá plavat bez dlouhého brodění.</p>
+        </article>
+        <article class="beach">
+          <h4>Spiaggia al Bosco / Città Giardino</h4>
+          <span class="dist">~1,2&ndash;1,5 km &middot; V</span>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=45.67779,13.41038">Východně od úseku GIT</a>. Většinou koncese <em>Camping al Bosco</em>, ale <strong>pěší vstup je zdarma</strong>. Pinie hned za pláží, vhodné na piknik, velmi mělká voda.</p>
+        </article>
+        <article class="beach">
+          <h4>Grado Pineta</h4>
+          <span class="dist">~3 km &middot; V</span>
+          <p>Po pobřežní cyklostezce do <a href="https://www.google.com/maps/search/?api=1&amp;query=45.68167,13.43192">Grado Pineta</a>. Volný písek s&nbsp;plážemi spravovanými kiosky, kitesurfový spot a&nbsp;psí pláž <em>Spiaggia di Snoopy</em>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h3>Doporučení</h3>
+      <p>Na krátké koupání se vyplatí zaplatit €3 a&nbsp;přejít ulici &ndash; je to blíž než jakákoli volná pláž a&nbsp;jsou tam sprchy i&nbsp;plavčíci. <em>Costa Azzurra</em> se hodí jako bezplatná varianta na delší odpoledne.</p>
+    </section>
+
+  </article>
+
+  <!-- ================= KAPITOLA: VODNÍ PARK ================= -->
+  <article class="chapter" id="vodni-park">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Vodní park<span class="tag open">Nejspíš zavřeno</span></h2>
+      <p class="intro"><em>Parco Acquatico</em> GIT &ndash; bazén s&nbsp;mořskou vodou deset minut pěšky od ubytování. V&nbsp;termínu pobytu ale nejspíš už bude po sezóně.</p>
+    </div>
+
+    <div class="note">
+      <span class="label">Konec sezóny</span>
+      <p>V&nbsp;roce 2025 GIT vodní park <strong>zavřel 8.&nbsp;9.</strong> Pro 14.&ndash;18.&nbsp;9. tedy počítat s&nbsp;tím, že bude zavřeno; jedinou šanci má 13.&nbsp;9. Datum pro rok 2026 nebylo k&nbsp;31.&nbsp;8. oznámeno.</p>
+    </div>
+
+    <section>
+      <ul>
+        <li><strong>Kde:</strong> Viale del Sole 8, vlastní vstup z&nbsp;cyklostezky, jde o&nbsp;6. vstup do areálu GIT. <a href="https://www.google.com/maps/search/?api=1&amp;query=45.67782,13.40434">Asi 850 m, 10 minut pěšky</a>.</li>
+        <li><strong>Otevřeno:</strong> 10:00&ndash;18:00, pokladna do 17:00, odpolední vstup od 14:00.</li>
+        <li><strong>Co obsahuje:</strong> velký bazén s&nbsp;mořskou vodou (~85 m), hydromasáže a&nbsp;protiproud, skokanská prkna, tobogán, dětská zóna se skluzavkami, bar s&nbsp;ponořenými sedačkami, trávníky na opalování.</li>
+      </ul>
+
+      <div class="scroll">
+        <table>
+          <caption>Vstupné včetně lehátka na trávníku</caption>
+          <thead>
+            <tr>
+              <th scope="col">Vstup</th>
+              <th scope="col" class="num">A &middot; po&ndash;čt</th>
+              <th scope="col" class="num">B &middot; pá&ndash;ne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Dospělý, celý den</th><td class="num">€17.00</td><td class="num">€21.00</td></tr>
+            <tr><th scope="row">Dospělý, odpoledne</th><td class="num">€11.50</td><td class="num">€14.50</td></tr>
+            <tr><th scope="row">Dítě, celý den</th><td class="num">€10.50</td><td class="num">€12.50</td></tr>
+            <tr><th scope="row">Dítě, odpoledne</th><td class="num">€7.50</td><td class="num">€8.50</td></tr>
+            <tr><th scope="row">Do 5 let s&nbsp;dospělým</th><td class="num">zdarma</td><td class="num">zdarma</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </article>
+
+  <!-- ================= KAPITOLA: PŘÍLIV A ODLIV ================= -->
+  <article class="chapter" id="prilivy">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Příliv a&nbsp;odliv</h2>
+      <p class="intro">Grado má extrémně ploché a&nbsp;mělké dno, takže při odlivu ustoupí voda desítky až stovky metrů od břehu.</p>
+    </div>
+
+    <div class="key">
+      <span class="label">Ve zkratce</span>
+      <p>Nejlepší čas na koupání je <strong>kolem poledne</strong>, kdy je příliv na vrcholu. Odpoledne (cca 16:00&ndash;19:30) je voda nejdál od břehu &ndash; vhodná doba na město nebo lagunu.</p>
+    </div>
+
+    <section>
+      <h3>Časy</h3>
+      <div class="scroll">
+        <table>
+          <caption>13.&ndash;18. 9. 2026, hlavní pláž</caption>
+          <thead>
+            <tr>
+              <th scope="col">Datum</th>
+              <th scope="col" class="mid">Odliv ráno</th>
+              <th scope="col" class="mid">Příliv &ndash; koupání</th>
+              <th scope="col" class="mid">Odliv odpoledne</th>
+              <th scope="col" class="mid">Příliv v&nbsp;noci</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Ne 13. 9.</th><td class="mid">04:45 (0,16)</td><td class="mid swim">11:05 (1,06)</td><td class="mid">17:29 (0,15)</td><td class="mid">23:23 (0,83)</td></tr>
+            <tr><th scope="row">Po 14. 9.</th><td class="mid">05:08 (0,22)</td><td class="mid swim">11:25 (1,01)</td><td class="mid">17:55 (0,18)</td><td class="mid">23:52 (0,78)</td></tr>
+            <tr><th scope="row">Út 15. 9.</th><td class="mid">05:28 (0,30)</td><td class="mid swim">11:45 (0,95)</td><td class="mid">18:21 (0,23)</td><td class="mid">&ndash;</td></tr>
+            <tr><th scope="row">St 16. 9.</th><td class="mid">05:46 (0,38)</td><td class="mid swim">12:03 (0,88)</td><td class="mid">18:51 (0,29)</td><td class="mid">00:21 (0,72)</td></tr>
+            <tr><th scope="row">Čt 17. 9.</th><td class="mid">05:57 (0,45)</td><td class="mid swim">12:20 (0,80)</td><td class="mid">19:30 (0,36)</td><td class="mid">00:53 (0,65)</td></tr>
+            <tr><th scope="row">Pá 18. 9.</th><td class="mid">05:39 (0,52)</td><td class="mid swim">12:30 (0,73)</td><td class="mid">21:16 (0,43)</td><td class="mid">01:44 (0,57)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="legend">Časy v&nbsp;CEST (místní čas), v&nbsp;závorce výška hladiny v&nbsp;metrech. Zvýrazněný sloupec je nejlepší čas na koupání. Astronomická předpověď &ndash; vítr a&nbsp;tlak vzduchu mohou hodnoty mírně posunout. Aktuální stav na <a href="https://tides4fishing.com/it/venezia-giulia/grado">tides4fishing.com</a>.</p>
+    </section>
+
+    <section>
+      <h3>Co z&nbsp;toho plyne</h3>
+      <ul>
+        <li>Vrchol přílivu se posouvá z&nbsp;11:05 na 12:30, asi o&nbsp;20 minut denně později.</li>
+        <li>Nejsilnější odlivy jsou 13.&ndash;15.&nbsp;9. (minima 0,15&ndash;0,30 m), protože 11.&nbsp;9. byl nov. Od 16.&nbsp;9. se rozdíl hladin zmenšuje.</li>
+        <li>Mělké ploché dno je zároveň výhoda &ndash; bezpečné pro malé děti, teplá voda, žádný sráz.</li>
+      </ul>
+    </section>
+
+  </article>
+
+  <footer>Grado 2026 &middot; sestaveno 31. 8. 2026 &middot; ceny v EUR podle oficiálního ceníku GIT 2026</footer>
+
+</div>
+
+</body>
+</html>
