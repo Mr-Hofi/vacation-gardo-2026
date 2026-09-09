@@ -235,6 +235,19 @@
   .swim{background:var(--accent-soft);color:var(--accent);font-weight:700}
   tbody tr:hover td:not(.swim),tbody tr:hover th{background:#f5f7f5}
 
+  /* ---- textova sablona ---- */
+  .template{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.82rem;
+    line-height:1.55;
+    white-space:pre-wrap;
+    background:var(--surface);
+    border:1px solid var(--rule);
+    padding:1rem 1.15rem;
+    margin:0;
+    overflow-x:auto;
+  }
+
   /* ---- checklist ---- */
   .todo{list-style:none;padding-left:0;gap:.5rem}
   .todo li{position:relative;padding-left:1.7rem}
@@ -306,6 +319,7 @@
       <li><a href="#vyresit">Vyřešit<span class="hint">otevřené otázky</span></a></li>
       <li><a href="#cesta">Cesta<span class="hint">mýto, vinětky, výbava</span></a></li>
       <li><a href="#pojisteni">Pojištění<span class="hint">kam volat, co je kryté</span></a></li>
+      <li><a href="#ubytovani">Ubytování<span class="hint">údaje k nahlášení, šablona zprávy</span></a></li>
       <li><a href="#parkovani">Parkování<span class="hint">pěší zóna, ZTL, parkoviště, tarify</span></a></li>
       <li><a href="#plaze">Pláže<span class="hint">vstupy, ceny, volné pláže</span></a></li>
       <li><a href="#vodni-park">Vodní park<span class="hint">ceny, co obsahuje</span></a></li>
@@ -326,8 +340,7 @@
     <section>
       <ul class="todo">
         <li><strong>Sjednat cestovní pojištění.</strong> <a href="https://www.axa-assistance.cz/cestovni-pojisteni/">AXA</a> varianta <strong>PREMIUM, 814 Kč</strong> za celou rodinu. Sjednat aspoň den předem &ndash; platí nejdřív 4 hodiny po zaplacení.</li>
-        <li><strong>Ubytovatel &ndash; ZTL.</strong> Zaregistrujete nám SPZ na <a href="http://ztl.comunegrado.it/">ztl.comunegrado.it</a>? Bez registrace přijde automatická pokuta z&nbsp;kamery.</li>
-        <li><strong>Ubytovatel &ndash; parkování.</strong> Počítáme s&nbsp;bezplatným parkovištěm na Piazzale Giusti. Dá se na něj spolehnout, nebo doporučujete Isolu della Schiusa či něco jiného?</li>
+        <li><strong>Ubytovatel &ndash; poslat údaje a&nbsp;dotazy.</strong> Šablona zprávy je v&nbsp;kapitole <a href="#ubytovani">Ubytování</a> &ndash; obsahuje údaje k&nbsp;nahlášení, registraci SPZ do ZTL i&nbsp;dotaz na parkování.</li>
         <li><strong>Před odjezdem &ndash; volný vstup na pláž.</strong> Ověřit v&nbsp;<a href="https://www.gradoit.it/_it/news_cerca">novinkách GIT</a>, jestli od 14.&nbsp;9. platí volný vstup jako v&nbsp;roce 2024. Oznámení chodí v&nbsp;prvních dnech září.</li>
         <li><strong>Před odjezdem &ndash; vodní park.</strong> Ověřit v&nbsp;<a href="https://www.gradoit.it/_it/news_cerca">novinkách GIT</a>, jestli je <em>Parco Acquatico</em> ještě v&nbsp;provozu. V&nbsp;roce 2025 zavřel 8.&nbsp;9.</li>
         <li><strong>Před odjezdem &ndash; tahák.</strong> Vytáhnout z&nbsp;dokumentu jednu stránku na místo: asistenční čísla, ceny vstupu a parkování, časy přílivu, adresy.</li>
@@ -440,6 +453,92 @@
         <li><strong>Nekryté:</strong> alkohol, kitesurf a rizikové sporty, cennosti a noční krádež z auta, škoda způsobená provozem vozidla (to je povinné ručení).</li>
       </ul>
       <p class="legend">U lékaře ukázat evropský průkaz pojištěnce &ndash; ve veřejné síti pak platíte jen spoluúčast. Doplatky a soukromou péči dorovnává cestovní pojištění.</p>
+    </section>
+
+  </article>
+
+  <!-- ================= KAPITOLA: UBYTOVÁNÍ ================= -->
+  <article class="chapter" id="ubytovani">
+
+    <div class="chapter-head">
+      <p class="kicker">Kapitola</p>
+      <h2>Ubytování</h2>
+      <p class="intro">Ubytovatel musí hosty do 24 hodin od příjezdu nahlásit policii přes portál <em>Alloggiati Web</em>. Potřebuje k&nbsp;tomu údaje, ne kopie dokladů.</p>
+    </div>
+
+    <div class="note">
+      <span class="label">Kopie dokladů neposílat</span>
+      <p>Italský úřad na ochranu osobních údajů (stanovisko z&nbsp;29.&nbsp;4.&nbsp;2026) <strong>zakazuje ubytovatelům uchovávat kopie a&nbsp;fotografie dokladů</strong> &ndash; po nahlášení je musí okamžitě smazat. A&nbsp;podle rozsudku Consiglio di Stato z&nbsp;21.&nbsp;11.&nbsp;2025 se identita ověřuje <em>de visu</em>, osobně nebo živým videem; předem poslaná fotka povinnost nesplní. Doklady tedy stejně ukážete až na místě.</p>
+    </div>
+
+    <section>
+      <h3>Jaké údaje poslat</h3>
+      <ul>
+        <li><strong>Za jednu osobu</strong> (<em>capofamiglia</em>): příjmení, jméno, pohlaví, datum narození, stát narození, státní příslušnost, <strong>typ dokladu, číslo dokladu a&nbsp;místo vydání</strong>.</li>
+        <li><strong>Za ostatní členy rodiny</strong> (<em>familiare</em>): příjmení, jméno, pohlaví, datum narození, stát narození, státní příslušnost. <strong>Doklad se nevyplňuje.</strong></li>
+        <li>Plus datum příjezdu a&nbsp;počet nocí.</li>
+      </ul>
+      <p class="legend">Číslo dokladu tedy potřebuje jen jeden z&nbsp;vás; u&nbsp;dětí se neposílá. Občanský průkaz stačí, pas není potřeba. Místo vydání je u&nbsp;české občanky vydávající úřad.</p>
+    </section>
+
+    <section>
+      <h3>Šablona zprávy</h3>
+      <pre class="template">Guest details for our stay 13-18 September
+
+Hello,
+
+sending all the details you need for the guest registration.
+
+HEAD OF FAMILY
+Surname:
+First name:
+Sex:
+Date of birth:
+Place and country of birth:
+Citizenship:
+Document type:          ID card
+Document number:
+Place of issue:
+
+FAMILY MEMBER
+Surname:
+First name:
+Sex:
+Date of birth:
+Place and country of birth:
+Citizenship:
+
+FAMILY MEMBER
+Surname:
+First name:
+Sex:
+Date of birth:
+Place and country of birth:
+Citizenship:
+
+STAY
+Arrival: 13 September 2026
+Departure: 18 September 2026
+Nights: 5
+
+CAR
+We arrive by car, registration plate: .....
+
+A few questions, if I may:
+1) Could you please register our plate in the ZTL system
+   (ztl.comunegrado.it)? Without it we would get an automatic
+   camera fine.
+2) Any tip for parking? We plan to use the free Parcheggio at
+   Piazzale Giusti - is it reliable, or would you recommend
+   something else?
+3) Is there Wi-Fi in the apartment?
+
+We will bring the original ID cards and show them at check-in.
+If you need anything else, just let me know.
+
+Best regards,
+</pre>
+      <p class="legend">Bloky <em>Family member</em> podle počtu osob. Otázky na konci se vejdou do stejné zprávy, ať nepíšete třikrát.</p>
     </section>
 
   </article>
