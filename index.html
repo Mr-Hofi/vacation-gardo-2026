@@ -235,19 +235,6 @@
   .swim{background:var(--accent-soft);color:var(--accent);font-weight:700}
   tbody tr:hover td:not(.swim),tbody tr:hover th{background:#f5f7f5}
 
-  /* ---- textova sablona ---- */
-  .template{
-    font-family:"JetBrains Mono",ui-monospace,monospace;
-    font-size:.82rem;
-    line-height:1.55;
-    white-space:pre-wrap;
-    background:var(--surface);
-    border:1px solid var(--rule);
-    padding:1rem 1.15rem;
-    margin:0;
-    overflow-x:auto;
-  }
-
   /* ---- checklist ---- */
   .todo{list-style:none;padding-left:0;gap:.5rem}
   .todo li{position:relative;padding-left:1.7rem}
@@ -340,7 +327,7 @@
     <section>
       <ul class="todo">
         <li><strong>Sjednat cestovní pojištění.</strong> <a href="https://www.axa-assistance.cz/cestovni-pojisteni/">AXA</a> varianta <strong>PREMIUM, 814 Kč</strong> za celou rodinu. Sjednat aspoň den předem &ndash; platí nejdřív 4 hodiny po zaplacení.</li>
-        <li><strong>Ubytovatel &ndash; poslat údaje a&nbsp;dotazy.</strong> Šablona zprávy je v&nbsp;kapitole <a href="#ubytovani">Ubytování</a> &ndash; obsahuje údaje k&nbsp;nahlášení, registraci SPZ do ZTL i&nbsp;dotaz na parkování.</li>
+        <li><strong>Ubytovatel &ndash; poslat údaje.</strong> Přes Airbnb chat, anglicky. Přehled potřebných údajů v&nbsp;kapitole <a href="#ubytovani">Ubytování</a>, hotová zpráva v&nbsp;lokálním souboru <em>airbnb-zprava.txt</em>.</li>
         <li><strong>Volný vstup na pláž.</strong> Ke&nbsp;9.&nbsp;9. nic oznámeno &ndash; poslední novinka GIT je z&nbsp;8.&nbsp;9. a&nbsp;o&nbsp;vstupu nic neříká. Zkontrolovat <a href="https://www.gradoit.it/_it/news_cerca">novinky</a> znovu těsně před odjezdem.</li>
         <li><strong>Před odjezdem &ndash; tahák.</strong> Vytáhnout z&nbsp;dokumentu jednu stránku na místo: asistenční čísla, ceny vstupu a parkování, časy přílivu, adresy.</li>
       </ul>
@@ -478,66 +465,7 @@
         <li>Plus datum příjezdu a&nbsp;počet nocí.</li>
       </ul>
       <p class="legend">Číslo dokladu tedy potřebuje jen jeden z&nbsp;vás; u&nbsp;dětí se neposílá. Občanský průkaz stačí, pas není potřeba. Místo vydání je u&nbsp;české občanky vydávající úřad.</p>
-    </section>
-
-    <section>
-      <h3>Šablona zprávy</h3>
-      <pre class="template">Guest details for our stay 13-18 September
-
-Hello,
-
-sending all the details you need for the guest registration.
-
-HEAD OF FAMILY
-Surname:
-First name:
-Sex:
-Date of birth:
-Place and country of birth:
-Citizenship:
-Document type:          ID card
-Document number:
-Place of issue:
-
-FAMILY MEMBER
-Surname:
-First name:
-Sex:
-Date of birth:
-Place and country of birth:
-Citizenship:
-
-FAMILY MEMBER
-Surname:
-First name:
-Sex:
-Date of birth:
-Place and country of birth:
-Citizenship:
-
-STAY
-Arrival: 13 September 2026
-Departure: 18 September 2026
-Nights: 5
-
-CAR
-We arrive by car, registration plate: .....
-
-A few questions, if I may:
-1) Could you please register our plate in the ZTL system
-   (ztl.comunegrado.it)? Without it we would get an automatic
-   camera fine.
-2) Any tip for parking? We plan to use the free Parcheggio at
-   Piazzale Giusti - is it reliable, or would you recommend
-   something else?
-3) Is there Wi-Fi in the apartment?
-
-We will bring the original ID cards and show them at check-in.
-If you need anything else, just let me know.
-
-Best regards,
-</pre>
-      <p class="legend">Bloky <em>Family member</em> podle počtu osob. Otázky na konci se vejdou do stejné zprávy, ať nepíšete třikrát.</p>
+      <p class="legend">Připravená zpráva pro Airbnb chat je v&nbsp;lokálním souboru <em>airbnb-zprava.txt</em>, mimo tento repozitář.</p>
     </section>
 
   </article>
